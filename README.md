@@ -6,7 +6,6 @@ NiyamNetra is an OCR-powered compliance checking system designed to verify wheth
 
 The system takes images of a product package, extracts relevant information using OCR, validates the extracted declarations against predefined compliance rules, and generates an explainable compliance result highlighting missing, invalid, or potentially non-compliant information.
 
----
 
 ## Key Features
 
@@ -37,7 +36,6 @@ The system takes images of a product package, extracts relevant information usin
 - **Risk Assessment**
   - Generates a compliance risk indication based on detected issues.
 
----
 
 ## System Workflow
 
@@ -82,46 +80,44 @@ Product Package Images
 
 ## OCR Pipeline
 
-NiyamNetra uses PaddleOCR to extract textual information from product packaging.
+NiyamNetra uses **PaddleOCR** to extract textual information from product packaging.
 
 The OCR pipeline consists of:
 
-1. Image Input
+### 1. Image Input
 
 Front and back images of the product package are provided as input.
 
-2. Image Preprocessing
+### 2. Image Preprocessing
 
 OpenCV-based image preprocessing is used to improve the quality of package images and make text easier to detect.
 
-3. Text Detection and Recognition
+### 3. Text Detection and Recognition
 
 PaddleOCR detects text regions within the package image and recognizes the text present in those regions.
 
-4. Text Processing
+### 4. Text Processing
 
 The extracted text is cleaned and processed before being passed to the compliance module.
 
-5. Declaration Identification
+### 5. Declaration Identification
 
 Relevant declarations are identified from the extracted package information.
 
 Examples include:
 
-Manufacturer / Packer / Importer
-Net quantity
-MRP
-Manufacturing / Packing / Import date
-Consumer care details
-6. Compliance Validation
+- Manufacturer / Packer / Importer
+- Net quantity
+- MRP
+- Manufacturing / Packing / Import date
+- Consumer care details
+
+### 6. Compliance Validation
 
 The extracted declarations are passed to the compliance engine, where they are checked against predefined compliance rules.
 
+
 ## Compliance Engine
-
-The compliance engine evaluates whether the required declarations are present and satisfy the defined validation rules.
-
-## ⚖️ Compliance Engine
 
 The compliance engine evaluates whether the required declarations are present and satisfy the defined validation rules.
 
@@ -176,42 +172,55 @@ Government Authority Portal
 Provides authorities with a dedicated interface to review compliance information and identify potential violations.
 
 ## Tech Stack
+
 - **Backend**
-  -Python
-  -FastAPI
-  -OCR and Image Processing
-  -PaddleOCR
-  -OpenCV
+  - Python
+  - FastAPI
+
+- **OCR and Image Processing**
+  - PaddleOCR
+  - OpenCV
+
 - **Database and Authentication**
-  -MongoDB
-  -JWT Authentication
+  - MongoDB
+  - JWT Authentication
+
 - **Other**
-  -REST APIs
-  -Rule-Based Compliance Validation
-  -Image Processing
-  -Text Extraction
+  - REST APIs
+  - Rule-Based Compliance Validation
+  - Image Processing
+  - Text Extraction
 ## Project Structure
+
 ```text
 NiyamNetra/
 │
 ├── backend/
-│   ├── api/
+│   ├── models/
 │   ├── routes/
-│   ├── services/
-│   ├── ocr/
-│   ├── compliance/
-│   └── main.py
+│   ├── database.py
+│   ├── main.py
+│   └── requirements.txt
+│
+├── compliance/
+│   ├── __init__.py
+│   ├── engine.py
+│   ├── report_generator.py
+│   ├── rules.py
+│   └── schemas.py
 │
 ├── frontend/
-│   ├── consumer/
-│   ├── manufacturer/
-│   └── authority/
+│   ├── src/
+│   ├── index.html
+│   ├── package-lock.json
+│   └── package.json
 │
-├── models/
+├── ocr_extraction/
+│   ├── __init__.py
+│   ├── main.py
+│   └── requirements.txt
 │
-├── utils/
-│
-├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
